@@ -14,9 +14,16 @@ namespace InfluxData.Net.Kapacitor
 
         private Lazy<ITaskClientModule> _taskClientModule;
 
+        private Lazy<ITemplateClientModule> _templateClientModule;
+
         public ITaskClientModule Task
         {
             get { return _taskClientModule.Value; }
+        }
+
+        public ITemplateClientModule Template
+        {
+            get { return _templateClientModule.Value; }
         }
 
         public KapacitorClient(string uri, KapacitorVersion kapacitorVersion, HttpClient httpClient = null, bool throwOnWarning = false)
@@ -51,6 +58,8 @@ namespace InfluxData.Net.Kapacitor
             _requestClient = new KapacitorRequestClient(configuration);
 
             _taskClientModule = new Lazy<ITaskClientModule>(() => new TaskClientModule(_requestClient));
+
+            _templateClientModule = new Lazy<ITemplateClientModule>(() => new TemplateClientModule(_requestClient));
         }
 
         protected virtual void BootstrapKapacitorLatest_v_0_10_1(IKapacitorClientConfiguration configuration)

@@ -8,5 +8,10 @@
         public const string Dbrps = "dbrps";
         public const string RetentionPolicy = "rp";
         public const string Tasks = "tasks";
+        public const string Pattern = "pattern";
+        public const string ScriptFormat = "script-format";
+        public const string Offset = "offset";
+        public const string Limit = "limit";
+
     }
 }
